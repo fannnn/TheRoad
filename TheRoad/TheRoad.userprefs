@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TheRoad\PlayerMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TheRoad\PlayerAttacker.cs">
     <Files>
-      <File FileName="Assets\Scripts\TheRoad\PlayerMovement.cs" Line="89" Column="20" />
+      <File FileName="Assets\Scripts\TheRoad\PlayerAttacker.cs" Line="24" Column="5" />
+      <File FileName="Assets\Scripts\TheRoad\PlayerMovement.cs" Line="90" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
