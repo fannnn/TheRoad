@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour {
 			if(defense == false)if(stun == false)if(hurt == false)if(dead == false)
 				if(attackCD < 0){
 					StartCoroutine(Attack());
-					attackCD = 0.3f;
+					attackCD = 0.6f;
 			}
 		//防禦判定[J鍵]
 		if (Input.GetKey (KeyCode.J)) 
