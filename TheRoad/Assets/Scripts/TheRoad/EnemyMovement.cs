@@ -65,7 +65,7 @@ public class EnemyMovement : MonoBehaviour {
 				
 				
 				
-				attackCD = 1.5f;
+				attackCD = 3f;
 			}
 		
 		

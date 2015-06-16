@@ -86,14 +86,14 @@ public class PlayerMovement : MonoBehaviour {
 			if(defense == false)if(stun == false)if(hurt == false)if(dead == false)
 				if(attackCD < 0){
 					StartCoroutine(Attack());
-					attackCD = 0.6f;
+					attackCD = 0.7f;
 			}
 		//防禦判定[J鍵]
 		if (Input.GetKey (KeyCode.J)) 
 			if(hurt == false)if(stun == false)if (dead == false)
 			if (defenseCD < 0) {
 					StartCoroutine(Defense());
-					defenseCD = 1;
+					defenseCD = 0.5f;
 			}
 
 //update到此結束
