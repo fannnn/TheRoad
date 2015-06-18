@@ -109,6 +109,7 @@ public class PlayerMovement : MonoBehaviour {
 		//開始攻擊前置
 			attack = true;
 			Model.GetComponent<Animator>().SetTrigger("attack");
+
 			yield return new WaitForSeconds (0.3f);
 		//攻擊碰撞擊出
 			//條件
@@ -156,7 +157,9 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-
+	void fuckyou(){
+		print ("yomama");
+	}
 
 
 
