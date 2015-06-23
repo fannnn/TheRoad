@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
 	void OnTriggerStay (Collider col){
 		if (col.gameObject.tag == ("Enemy")) 
 			EnemyCol = col.gameObject;
-		print (EnemyCol);
+		//print (EnemyCol);
 	}
 	//音效設置
 	void PlaySound (int clip){
@@ -85,8 +85,8 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.F)) 
 			if(defense == false)if(stun == false)if(hurt == false)if(dead == false)
 				if(attackCD < 0){
-					StartCoroutine(Attack());
-					attackCD = 0.7f;
+				Model.GetComponent<Animator>().SetTrigger("attack");
+				attackCD = 0.5f;
 			}
 		//防禦判定[J鍵]
 		if (Input.GetKey (KeyCode.J)) 
@@ -104,19 +104,16 @@ public class PlayerMovement : MonoBehaviour {
 
 //角色動態類
 
-	//攻擊動態處理
-	public IEnumerator Attack (){
+	//攻擊擊中處理
+	public IEnumerator Attack1 (){
 		//開始攻擊前置
-			attack = true;
-			Model.GetComponent<Animator>().SetTrigger("attack");
-
-			yield return new WaitForSeconds (0.3f);
+			attack = true;			
 		//攻擊碰撞擊出
 			//條件
-			if(defense == false)if(stun == false)if(dead == false){
+//			if(defense == false)if(stun == false)if(dead == false){
 				AttackCol.GetComponent<BoxCollider>().enabled = true;
 				PlaySound(0);
-			}
+//			}
 			yield return new WaitForSeconds (0.1f);
 		//收回攻擊碰撞
 			AttackCol.GetComponent<BoxCollider>().enabled = false;
@@ -156,16 +153,6 @@ public class PlayerMovement : MonoBehaviour {
 			stun = false;
 		}
 	}
-
-	void fuckyou(){
-		print ("yomama");
-	}
-
-
-
-
-
-
 
 
 
