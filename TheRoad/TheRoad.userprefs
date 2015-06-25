@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="E:\FRDefenceGame\Unity\Assets\Menu\Scripts\Area\StoryLevelClick.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TheRoad\PlayerMovement.cs">
     <Files>
-      <File FileName="E:\FRDefenceGame\Unity\Assets\Menu\Scripts\Area\StoryLevelClick.cs" Line="10" Column="29" />
+      <File FileName="Assets\Scripts\TheRoad\PlayerMovement.cs" Line="121" Column="59" />
+      <File FileName="Assets\Scripts\TheRoad\PlayerAttacker.cs" Line="25" Column="3" />
+      <File FileName="Assets\Scripts\TheRoad\EnemyMovement.cs" Line="97" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

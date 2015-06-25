@@ -46,9 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\ShootingShit\MoveCube.cs" />
-     <Compile Include="Assets\Scripts\ShootingShit\Shoot.cs" />
-     <Compile Include="Assets\Scripts\ShootingShit\TEST.cs" />
      <Compile Include="Assets\Scripts\TETforFUN.cs" />
      <Compile Include="Assets\Scripts\TheRoad\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\TheRoad\EnemyMovement.cs" />
@@ -58,10 +55,10 @@
      <Compile Include="Assets\Scripts\UselessShit.cs" />
      <Compile Include="Assets\Scripts\eatWhatShuffle.cs" />
      <Compile Include="Assets\Scripts\eatWhat_2.cs" />
-     <None Include="Assets\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Diffuse.shader" />
-     <None Include="Assets\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Transparent.shader" />
-     <None Include="Assets\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Cutout.shader" />
-     <None Include="Assets\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Emissive.shader" />
+     <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Diffuse.shader" />
+     <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Transparent.shader" />
+     <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Cutout.shader" />
+     <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Emissive.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

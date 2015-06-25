@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	//戰鬥相關
 	public GameObject PlayerGO;
-//	public GameObject[] EnemyGO;
 	public GameObject EnemyCol;
 	public GameObject Model;
 	public GameObject AttackCol;
@@ -26,10 +25,16 @@ public class PlayerMovement : MonoBehaviour {
 
 	public AudioClip[] audioClip;
 
+	float atkCD;
+	float defCD;
+
 	//初始化設置
 	void Start (){
 		PlayerGO = GameObject.FindGameObjectWithTag ("Player");
-//		EnemyGO = GameObject.FindGameObjectsWithTag ("Enemy");
+
+		atkCD = attackCD;
+		defCD = defenseCD;
+
 	}
 	//暫時用血量ＵＩ
 	void OnGUI (){
@@ -78,22 +83,23 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		//攻擊防禦CD設置
-		attackCD -= Time.deltaTime;
-		defenseCD -= Time.deltaTime;
+		atkCD -= Time.deltaTime;
+		defCD -= Time.deltaTime;
 
 		//攻擊判定[F鍵]
 		if (Input.GetKeyDown(KeyCode.F)) 
-			if(defense == false)if(stun == false)if(hurt == false)if(dead == false)
-				if(attackCD < 0){
-				Model.GetComponent<Animator>().SetTrigger("attack");
-				attackCD = 0.5f;
+			if(defense == false)if(stun == false)if(hurt == false)if(dead == false)if(attack == false)
+				if(atkCD < 0){
+				attack = true;
+				Model.GetComponent<Animator>().SetTrigger("attack");//觸發攻擊動畫
+				atkCD = attackCD;
 			}
 		//防禦判定[J鍵]
 		if (Input.GetKey (KeyCode.J)) 
 			if(hurt == false)if(stun == false)if (dead == false)
-			if (defenseCD < 0) {
+			if (defCD < 0) {
 					StartCoroutine(Defense());
-					defenseCD = 0.5f;
+					defCD = defenseCD;
 			}
 
 //update到此結束
@@ -106,19 +112,40 @@ public class PlayerMovement : MonoBehaviour {
 
 	//攻擊擊中處理
 	public IEnumerator Attack1 (){
-		//開始攻擊前置
-			attack = true;			
-		//攻擊碰撞擊出
-			//條件
-//			if(defense == false)if(stun == false)if(dead == false){
+		//攻擊碰撞擊出				
 				AttackCol.GetComponent<BoxCollider>().enabled = true;
 				PlaySound(0);
-//			}
-			yield return new WaitForSeconds (0.1f);
-		//收回攻擊碰撞
-			AttackCol.GetComponent<BoxCollider>().enabled = false;
-			attack = false;
+		yield return new WaitForSeconds (0.1f);			
+		AttackCol.GetComponent<BoxCollider>().enabled = false;	
+
+		GetComponent<Rigidbody>().velocity= new Vector3(10,0,0);
+		attack = false;
+
 		}
+	public IEnumerator Attack2 (){
+		//攻擊碰撞擊出				
+		AttackCol.GetComponent<BoxCollider>().enabled = true;
+		PlaySound(0);
+		yield return new WaitForSeconds (0.1f);			
+		AttackCol.GetComponent<BoxCollider>().enabled = false;	
+		attack = false;
+	}
+	public IEnumerator Attack3 (){
+		//攻擊碰撞擊出				
+		AttackCol.GetComponent<BoxCollider>().enabled = true;
+		PlaySound(0);
+		yield return new WaitForSeconds (0.1f);			
+		AttackCol.GetComponent<BoxCollider>().enabled = false;	
+		attack = false;
+	}
+	public IEnumerator SAttack1 (){
+		//攻擊碰撞擊出				
+		AttackCol.GetComponent<BoxCollider>().enabled = true;
+		PlaySound(0);
+		yield return new WaitForSeconds (0.1f);		
+		AttackCol.GetComponent<BoxCollider>().enabled = false;	
+		attack = false;
+	}
 	//受傷動態處理
 	public IEnumerator Hurt(){
 		if (dead == false) {
@@ -133,11 +160,13 @@ public class PlayerMovement : MonoBehaviour {
 	//防禦動態處理
 	public IEnumerator Defense(){
 		if (dead == false) {
-			defense = true;
+			defense = true;attack = false;
+			stopMoving =true;
 			Model.GetComponent<Animator> ().Play ("defense");
 			PlaySound(1);
 			yield return new WaitForSeconds (0.5f);
 			defense = false;
+			stopMoving =false;
 		}
 	}
 	//死亡動態處理
