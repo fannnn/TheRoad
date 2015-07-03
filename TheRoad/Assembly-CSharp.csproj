@@ -46,16 +46,17 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\TETforFUN.cs" />
-     <Compile Include="Assets\Scripts\TheRoad\CameraFollow.cs" />
-     <Compile Include="Assets\Scripts\TheRoad\EnemyMovement.cs" />
-     <Compile Include="Assets\Scripts\TheRoad\PlayerAttacker.cs" />
-     <Compile Include="Assets\Scripts\TheRoad\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\TheRoad\Restart.cs" />
-     <Compile Include="Assets\Scripts\UselessShit.cs" />
-     <Compile Include="Assets\Scripts\eatWhatShuffle.cs" />
-     <Compile Include="Assets\Scripts\eatWhat_2.cs" />
+     <Compile Include="Assets\Scripts\Actor_01.cs" />
+     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
+     <Compile Include="Assets\Scripts\GameSystem.cs" />
+     <Compile Include="Assets\Scripts\PlayerAttacker.cs" />
+     <Compile Include="Assets\Scripts\UnitState.cs" />
+     <None Include="Assets\Double Sided Shaders\CiconiaStudio_DoubleSided_Cutout.shader" />
      <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Diffuse.shader" />
+     <None Include="Assets\Double Sided Shaders\CiconiaStudio_DoubleSided_Emissive.shader" />
+     <None Include="Assets\Double Sided Shaders\CiconiaStudio_DoubleSided_Transparent.shader" />
+     <None Include="Assets\Double Sided Shaders\CiconiaStudio_DoubleSided_Diffuse.shader" />
      <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Transparent.shader" />
      <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Cutout.shader" />
      <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Emissive.shader" />
