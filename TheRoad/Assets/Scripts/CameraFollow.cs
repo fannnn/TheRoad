@@ -16,9 +16,9 @@ public class CameraFollow : MonoBehaviour {
 //		var tmp = transform.position;
 //		tmp.x = playerGO.transform.position.x;
 //		transform.position = tmp;
-		if(playerGO.GetComponent<PlayerMovement>().inBattle == false)
-			if(playerGO.GetComponent<PlayerMovement>().stopMoving == false)
-				if(playerGO.GetComponent<PlayerMovement>().dead == false)
+		if(playerGO.GetComponent<UnitState>().inBattle == false)
+			if(playerGO.GetComponent<UnitState>().stopMoving == false)
+				if(playerGO.GetComponent<UnitState>().dead == false)
 					transform.position += new Vector3 (0.1f, 0, 0);
 	}
 }
