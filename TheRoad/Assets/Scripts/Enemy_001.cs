@@ -22,6 +22,7 @@ public class Enemy_001 : MonoBehaviour {
 	
 	//碰撞區設置
 	void OnTriggerStay (Collider col){
+		U.TargetCol = col.gameObject;
 		if(col.isTrigger == false)if (col.gameObject.tag == ("Player")) {
 			U.inBattle = true;
 			GetComponent<Animator> ().SetBool ("moving", false);
@@ -62,11 +63,10 @@ public class Enemy_001 : MonoBehaviour {
 		}
 		
 
-		
-		
-		//前進移動，條件(非戰鬥中，非停止狀態，非死亡狀態)
+		//前進移動，條件(非戰鬥中，非停止狀態，非死亡狀態，非攻擊中，非受傷中，非防禦中)
 		if(Vector3.Distance(gameObject.transform.position,GameObject.FindGameObjectWithTag("Player").transform.position)<15)
-		if (U.inBattle == false)if(U.stopMoving == false)if(U.dead == false){
+			if (U.inBattle == false)if(U.stopMoving == false)if(U.dead == false)if(U.hurt == false)
+			if(U.attack == false)if(U.stun == false)if(U.defense == false){
 			transform.position -= new Vector3 (0.1f, 0, 0);
 			GetComponent<Animator> ().SetBool ("moving", true);
 		}
@@ -81,7 +81,7 @@ public class Enemy_001 : MonoBehaviour {
 			if(U.inBattle == true)if(U.defense == false)if(U.stun == false)if(U.hurt == false)if(U.dead == false)if(U.attack == false)
 			if(atkCD < 0){
 				U.attack = true;
-				StartCoroutine(Move());
+				//StartCoroutine(Move());
 				GetComponent<Animator>().SetTrigger("attack");//觸發攻擊動畫
 				atkCD = U.attackCD;
 			}
@@ -91,8 +91,7 @@ public class Enemy_001 : MonoBehaviour {
 //				StartCoroutine(Defense());
 //				defCD = U.defenseCD;
 //			}
-		
-		
+
 		
 		
 	}

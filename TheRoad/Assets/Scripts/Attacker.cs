@@ -22,8 +22,8 @@ public class Attacker : MonoBehaviour {
 			}
 			//失敗
 			if (col.GetComponent<UnitState> ().defense == true) {
+				col.GetComponent<UnitState> ().counter = true;
 				Owner.GetComponent<UnitState> ().knocked = true;
-
 			}
 		}
 	}

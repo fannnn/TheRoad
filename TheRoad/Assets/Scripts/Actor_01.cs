@@ -29,7 +29,6 @@ public class Actor_01 : MonoBehaviour {
 		} 						
 	}
 	void OnTriggerExit(Collider col){
-		print ("fuck");
 		U.inBattle = false;
 	}
 
@@ -77,8 +76,9 @@ public class Actor_01 : MonoBehaviour {
 		if (speed >= 0.1f)
 			speed = 0.1f;		
 
-		//前進移動，條件(非戰鬥中，非停止狀態，非死亡狀態)
-		if (U.inBattle == false)if(U.stopMoving == false)if(U.dead == false){
+		//前進移動，條件(非戰鬥中，非停止狀態，非死亡狀態，非攻擊中，非受傷中，非防禦中)
+		if (U.inBattle == false)if(U.stopMoving == false)if(U.dead == false)if(U.hurt == false)
+		if(U.stun == false)if(U.defense == false){
 			transform.position += new Vector3 (speed, 0, 0);
 			GetComponent<Animator> ().SetBool ("moving",true);
 		}
@@ -106,9 +106,13 @@ public class Actor_01 : MonoBehaviour {
 				defCD = U.defenseCD;
 			}
 		//成功招架
-		if(U.TargetCol != null)if(U.TargetCol.tag ==("Enemy"))if (U.TargetCol.GetComponent<UnitState> ().knocked == true)
-			GetComponent<Animator>().Play("counter");
-
+		if (U.TargetCol != null)
+		//if (U.TargetCol.tag == ("Enemy"))
+		if (U.counter == true){
+			GetComponent<Animator> ().Play ("counter");
+			print ("fucke!!");
+			U.counter = false;
+		}
 
 
 	
@@ -125,7 +129,6 @@ public class Actor_01 : MonoBehaviour {
 	//攻擊擊中處理
 	public void AttackPRE (){
 		U.attack = true;
-		print ("fucker!!!");
 	}
 
 	public IEnumerator Attack1 (){
