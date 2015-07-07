@@ -24,7 +24,7 @@ public class Enemy_001 : MonoBehaviour {
 	void OnTriggerStay (Collider col){
 		if(col.isTrigger == false)if (col.gameObject.tag == ("Player")) {
 			U.inBattle = true;
-			GetComponent<Animator> ().SetBool ("inBattle", true);
+			GetComponent<Animator> ().SetBool ("moving", false);
 		} 
 	}
 	void OnTriggerExit(Collider col){
@@ -56,8 +56,10 @@ public class Enemy_001 : MonoBehaviour {
 			StartCoroutine(Hurt());
 		}
 		//暈眩檢查
-		if (U.stun == true)
-			StartCoroutine (Stun());
+		if (U.knocked == true){
+			StartCoroutine (Stun ());
+			U.knocked = false;
+		}
 		
 
 		
@@ -66,6 +68,7 @@ public class Enemy_001 : MonoBehaviour {
 		if(Vector3.Distance(gameObject.transform.position,GameObject.FindGameObjectWithTag("Player").transform.position)<15)
 		if (U.inBattle == false)if(U.stopMoving == false)if(U.dead == false){
 			transform.position -= new Vector3 (0.1f, 0, 0);
+			GetComponent<Animator> ().SetBool ("moving", true);
 		}
 		
 		
@@ -116,16 +119,11 @@ public class Enemy_001 : MonoBehaviour {
 	//受傷動態處理
 	public IEnumerator Hurt(){
 		if (U.dead == false) {
-			U.hurt = true;
+			U.hurt = true;U.attack = false;
 			GetComponent<Animator> ().Play ("hurt");
 			PlaySound(2);				
 			//擊退
-			int t= 10;
-			while(t>0){
-				transform.position += new Vector3(0.3f,0,0);
-				t -= 1;
-				yield return new WaitForSeconds (0.001f);
-			}
+			StartCoroutine(MoveBack());
 			yield return new WaitForSeconds (0.5f);
 			U.hurt = false;
 		}
@@ -151,12 +149,14 @@ public class Enemy_001 : MonoBehaviour {
 	public IEnumerator Stun(){
 		if (U.dead == false) {
 			U.stun = true;
+			yield return new WaitForSeconds (0.3f);
+			StartCoroutine(MoveBack());
 			GetComponent<Animator> ().Play ("hurt");
 			yield return new WaitForSeconds (1);
 			U.stun = false;
 		}
 	}
-	//短移動處理
+	//前進
 	public IEnumerator Move(){
 		int move = 10;
 		while(move > 0){
@@ -164,6 +164,15 @@ public class Enemy_001 : MonoBehaviour {
 			move -= 1;
 			yield return new WaitForSeconds (0.001f);	
 			}
+	}
+	//後退
+	public IEnumerator MoveBack(){
+		int t = 10;
+		while (t>0) {
+			transform.position += new Vector3 (0.3f, 0, 0);
+			t -= 1;
+			yield return new WaitForSeconds (0.001f);
+		}
 	}
 	
 }

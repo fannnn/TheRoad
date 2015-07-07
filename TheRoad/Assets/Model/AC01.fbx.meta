@@ -1732,6 +1732,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0
+        functionName: AttackPRE
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -2569,6 +2576,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0
+        functionName: AttackPRE
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -3379,8 +3393,8 @@ ModelImporter:
     - serializedVersion: 16
       name: defense
       takeName: Take 001
-      firstFrame: 500
-      lastFrame: 550
+      firstFrame: 519
+      lastFrame: 587
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -4209,8 +4223,8 @@ ModelImporter:
     - serializedVersion: 16
       name: counter
       takeName: Take 001
-      firstFrame: 700
-      lastFrame: 754
+      firstFrame: 688
+      lastFrame: 766
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -7556,6 +7570,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0
+        functionName: AttackPRE
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -8390,6 +8411,13 @@ ModelImporter:
       events:
       - time: .188790351
         functionName: SAttack1
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: AttackPRE
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

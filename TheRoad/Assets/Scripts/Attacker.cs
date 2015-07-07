@@ -5,6 +5,7 @@ public class Attacker : MonoBehaviour {
 	public GameObject Owner;
 	public int DMG;
 
+
 	void OnTriggerEnter(Collider col)
 	{
 		if (col != null)if(col.gameObject.tag!=("Untagged")) {
@@ -21,7 +22,8 @@ public class Attacker : MonoBehaviour {
 			}
 			//失敗
 			if (col.GetComponent<UnitState> ().defense == true) {
-				Owner.GetComponent<UnitState> ().stun = true;
+				Owner.GetComponent<UnitState> ().knocked = true;
+
 			}
 		}
 	}

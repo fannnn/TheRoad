@@ -58,23 +58,24 @@ public class Actor_01 : MonoBehaviour {
 			StartCoroutine(Hurt());
 		}
 		//暈眩檢查
-		if (U.stun == true)
-			StartCoroutine (Stun());
+		if (U.knocked == true){
+			StartCoroutine (Stun ());
+			U.knocked = false;
+		}
 		//敵人死亡檢查
 		if (U.TargetCol != null)if (U.TargetCol.GetComponent<UnitState> ().dead == true) {
 				U.inBattle = false;
 				U.TargetCol = null;
 			}
-		//
 
+
+		//移動速度線性控制
 		if (U.inBattle == true)
 			speed = 0;
 		if (U.inBattle == false)
-			speed += 0.01f;
+			speed += 0.0005f * 2;
 		if (speed >= 0.1f)
-			speed = 0.1f;
-
-		
+			speed = 0.1f;		
 
 		//前進移動，條件(非戰鬥中，非停止狀態，非死亡狀態)
 		if (U.inBattle == false)if(U.stopMoving == false)if(U.dead == false){
@@ -92,7 +93,7 @@ public class Actor_01 : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.F)) 
 			if(U.defense == false)if(U.stun == false)if(U.hurt == false)if(U.dead == false)if(U.attack == false)
 			if(atkCD < 0){
-				U.attack = true;
+				//U.attack = true;
 				StartCoroutine(Move());
 				GetComponent<Animator>().SetTrigger("attack");//觸發攻擊動畫
 				atkCD = U.attackCD;
@@ -104,6 +105,9 @@ public class Actor_01 : MonoBehaviour {
 				StartCoroutine(Defense());
 				defCD = U.defenseCD;
 			}
+		//成功招架
+		if(U.TargetCol != null)if(U.TargetCol.tag ==("Enemy"))if (U.TargetCol.GetComponent<UnitState> ().knocked == true)
+			GetComponent<Animator>().Play("counter");
 
 
 
@@ -119,6 +123,11 @@ public class Actor_01 : MonoBehaviour {
 	//角色動態類
 	
 	//攻擊擊中處理
+	public void AttackPRE (){
+		U.attack = true;
+		print ("fucker!!!");
+	}
+
 	public IEnumerator Attack1 (){
 		//攻擊碰撞擊出				
 		U.AttackCol.GetComponent<BoxCollider>().enabled = true;
@@ -160,16 +169,10 @@ public class Actor_01 : MonoBehaviour {
 	//受傷動態處理
 	public IEnumerator Hurt(){
 		if (U.dead == false) {
-			U.hurt = true;
+			U.hurt = true;U.attack = false;
 			GetComponent<Animator> ().Play ("hurt");
 			PlaySound(2);				
-			//擊退
-			int t= 10;
-			while(t>0){
-				transform.position -= new Vector3(0.3f,0,0);
-				t -= 1;
-				yield return new WaitForSeconds (0.001f);
-			}
+			StartCoroutine(MoveBack());
 			yield return new WaitForSeconds (0.5f);
 			U.hurt = false;
 		}
@@ -196,11 +199,12 @@ public class Actor_01 : MonoBehaviour {
 		if (U.dead == false) {
 			U.stun = true;
 			GetComponent<Animator> ().Play ("hurt");
+			StartCoroutine(MoveBack());
 			yield return new WaitForSeconds (1);
 			U.stun = false;
 		}
 	}
-	//短移動處理
+	//前進
 	public IEnumerator Move(){
 		int move = 10;
 		while(move > 0){
@@ -208,6 +212,15 @@ public class Actor_01 : MonoBehaviour {
 			move -= 1;
 			yield return new WaitForSeconds (0.001f);	
 			}
+	}
+	//後退
+	public IEnumerator MoveBack(){
+		int t = 10;
+		while (t>0) {
+			transform.position -= new Vector3 (0.3f, 0, 0);
+			t -= 1;
+			yield return new WaitForSeconds (0.001f);
+		}
 	}
 
 }

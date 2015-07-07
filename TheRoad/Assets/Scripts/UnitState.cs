@@ -19,6 +19,7 @@ public class UnitState : MonoBehaviour {
 	public bool hurt;
 	public bool defense;
 	public bool dead;
+	public bool knocked;
 	public bool stun;
 	public bool stopMoving;
 
