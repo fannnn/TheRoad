@@ -11,6 +11,9 @@ public class Enemy_001 : MonoBehaviour {
 	float atkCD;
 	float defCD;
 	
+	float MoveDis;
+	float MoveTime;
+	
 	
 	//初始化設置
 	void Start () {
@@ -81,7 +84,7 @@ public class Enemy_001 : MonoBehaviour {
 			if(U.inBattle == true)if(U.defense == false)if(U.stun == false)if(U.hurt == false)if(U.dead == false)if(U.attack == false)
 			if(atkCD < 0){
 				U.attack = true;
-				//StartCoroutine(Move());
+			MoveDis = 0.1f;MoveTime =10;StartCoroutine(MoveLeft());
 				GetComponent<Animator>().SetTrigger("attack");//觸發攻擊動畫
 				atkCD = U.attackCD;
 			}
@@ -122,7 +125,7 @@ public class Enemy_001 : MonoBehaviour {
 			GetComponent<Animator> ().Play ("hurt");
 			PlaySound(2);				
 			//擊退
-			StartCoroutine(MoveBack());
+			MoveDis = 0.1f;MoveTime =10;StartCoroutine(MoveRight());
 			yield return new WaitForSeconds (0.5f);
 			U.hurt = false;
 		}
@@ -149,28 +152,27 @@ public class Enemy_001 : MonoBehaviour {
 		if (U.dead == false) {
 			U.stun = true;
 			yield return new WaitForSeconds (0.3f);
-			StartCoroutine(MoveBack());
+			MoveDis = 0.1f;MoveTime =10;StartCoroutine(MoveRight());
 			GetComponent<Animator> ().Play ("hurt");
 			yield return new WaitForSeconds (1);
 			U.stun = false;
 		}
 	}
-	//前進
-	public IEnumerator Move(){
-		int move = 10;
-		while(move > 0){
-			transform.position -= new Vector3(0.1f,0,0);
-			move -= 1;
-			yield return new WaitForSeconds (0.001f);	
-			}
+
+	//往左
+	public IEnumerator MoveLeft(){
+		while(MoveTime >= 0){
+			transform.position -= new Vector3(MoveDis,0,0);
+			MoveTime -= 1;
+			yield return new WaitForSeconds (0.001f);			
+		}
 	}
-	//後退
-	public IEnumerator MoveBack(){
-		int t = 10;
-		while (t>0) {
-			transform.position += new Vector3 (0.3f, 0, 0);
-			t -= 1;
-			yield return new WaitForSeconds (0.001f);
+	//往右
+	public IEnumerator MoveRight(){
+		while(MoveTime >= 0){
+			transform.position += new Vector3(MoveDis,0,0);
+			MoveTime -= 1;
+			yield return new WaitForSeconds (0.001f);			
 		}
 	}
 	

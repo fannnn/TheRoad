@@ -10,6 +10,8 @@ public class Actor_01 : MonoBehaviour {
 
 	float atkCD;
 	float defCD;
+	float MoveDis;
+	float MoveTime;
 
 
 	//初始化設置
@@ -17,7 +19,7 @@ public class Actor_01 : MonoBehaviour {
 		U = GetComponent<UnitState> ();
 		atkCD = U.attackCD;
 		defCD = U.defenseCD;
-		healthAdjust = U.health;
+		healthAdjust = U.health;	
 	}
 	
 	//碰撞區設置
@@ -93,13 +95,13 @@ public class Actor_01 : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.F)) 
 			if(U.defense == false)if(U.stun == false)if(U.hurt == false)if(U.dead == false)if(U.attack == false)
 			if(atkCD < 0){
-				//U.attack = true;
-				StartCoroutine(Move());
+				U.attack = true;
+				MoveDis = 0.1f;MoveTime =10;StartCoroutine(MoveRight());
 				GetComponent<Animator>().SetTrigger("attack");//觸發攻擊動畫
 				atkCD = U.attackCD;
 			}
 		//防禦判定[J鍵]
-		if (Input.GetKey (KeyCode.J)) 
+		if (Input.GetKeyDown (KeyCode.J)) 
 			if(U.hurt == false)if(U.stun == false)if (U.dead == false)
 			if (defCD < 0) {
 				StartCoroutine(Defense());
@@ -113,7 +115,13 @@ public class Actor_01 : MonoBehaviour {
 			print ("fucke!!");
 			U.counter = false;
 		}
-
+		//閃躲判定[D]
+		if (Input.GetKeyDown (KeyCode.D))
+		if (U.hurt == false)if (U.stun == false)if (U.dead == false)
+			if (defCD < 0) {
+				MoveDis = 0.5f;MoveTime =10;StartCoroutine(MoveLeft());
+				defCD = U.defenseCD;
+			}
 
 	
 	}
@@ -128,7 +136,7 @@ public class Actor_01 : MonoBehaviour {
 	
 	//攻擊擊中處理
 	public void AttackPRE (){
-		U.attack = true;
+		//U.attack = true;
 	}
 
 	public IEnumerator Attack1 (){
@@ -175,7 +183,7 @@ public class Actor_01 : MonoBehaviour {
 			U.hurt = true;U.attack = false;
 			GetComponent<Animator> ().Play ("hurt");
 			PlaySound(2);				
-			StartCoroutine(MoveBack());
+			MoveDis = 0.1f;MoveTime =10;StartCoroutine(MoveLeft());
 			yield return new WaitForSeconds (0.5f);
 			U.hurt = false;
 		}
@@ -202,27 +210,28 @@ public class Actor_01 : MonoBehaviour {
 		if (U.dead == false) {
 			U.stun = true;
 			GetComponent<Animator> ().Play ("hurt");
-			StartCoroutine(MoveBack());
+			MoveDis = 0.1f;MoveTime =10;StartCoroutine(MoveLeft());
 			yield return new WaitForSeconds (1);
 			U.stun = false;
 		}
+	}	
+
+
+
+	//往左
+	public IEnumerator MoveLeft(){
+		while(MoveTime >= 0){
+			transform.position -= new Vector3(MoveDis,0,0);
+			MoveTime -= 1;
+			yield return new WaitForSeconds (0.001f);			
+		}
 	}
-	//前進
-	public IEnumerator Move(){
-		int move = 10;
-		while(move > 0){
-			transform.position += new Vector3(0.1f,0,0);
-			move -= 1;
-			yield return new WaitForSeconds (0.001f);	
-			}
-	}
-	//後退
-	public IEnumerator MoveBack(){
-		int t = 10;
-		while (t>0) {
-			transform.position -= new Vector3 (0.3f, 0, 0);
-			t -= 1;
-			yield return new WaitForSeconds (0.001f);
+	//往右
+	public IEnumerator MoveRight(){
+		while(MoveTime >= 0){
+			transform.position += new Vector3(MoveDis,0,0);
+			MoveTime -= 1;
+			yield return new WaitForSeconds (0.001f);			
 		}
 	}
 

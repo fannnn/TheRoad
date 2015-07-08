@@ -2,11 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy_001.cs">
     <Files>
-      <File FileName="Assets\Scripts\Actor_01.cs" Line="169" Column="20" />
-      <File FileName="Assets\Scripts\GameSystem.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy_001.cs" Line="84" Column="7" />
-      <File FileName="Assets\Scripts\Attacker.cs" Line="25" Column="45" />
-      <File FileName="Assets\Scripts\UnitState.cs" Line="23" Column="22" />
+      <File FileName="Assets\Scripts\Enemy_001.cs" Line="86" Column="21" />
+      <File FileName="Assets\Scripts\Attacker.cs" Line="22" Column="5" />
+      <File FileName="Assets\Scripts\Actor_01.cs" Line="99" Column="5" />
+      <File FileName="Assets\Scripts\ShortMoving.cs" Line="17" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
