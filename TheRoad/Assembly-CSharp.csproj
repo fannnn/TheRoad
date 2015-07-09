@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\Actor_01.cs" />
      <Compile Include="Assets\Scripts\Attacker.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
@@ -53,11 +54,8 @@
      <Compile Include="Assets\Scripts\GameSystem.cs" />
      <Compile Include="Assets\Scripts\ShortMoving.cs" />
      <Compile Include="Assets\Scripts\UnitState.cs" />
-     <None Include="Assets\Double Sided Shaders\CiconiaStudio_DoubleSided_Cutout.shader" />
      <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Diffuse.shader" />
-     <None Include="Assets\Double Sided Shaders\CiconiaStudio_DoubleSided_Emissive.shader" />
-     <None Include="Assets\Double Sided Shaders\CiconiaStudio_DoubleSided_Transparent.shader" />
-     <None Include="Assets\Double Sided Shaders\CiconiaStudio_DoubleSided_Diffuse.shader" />
+     <None Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Transparent.shader" />
      <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Cutout.shader" />
      <None Include="Assets\Scripts\Double_Sided_Shaders\CiconiaStudio_DoubleSided_Emissive.shader" />

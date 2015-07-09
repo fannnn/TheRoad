@@ -96,7 +96,7 @@ public class Actor_01 : MonoBehaviour {
 			if(U.defense == false)if(U.stun == false)if(U.hurt == false)if(U.dead == false)if(U.attack == false)
 			if(atkCD < 0){
 				U.attack = true;
-				MoveDis = 0.1f;MoveTime =10;StartCoroutine(MoveRight());
+				MoveDis = 0.05f;MoveTime =10;StartCoroutine(MoveRight());
 				GetComponent<Animator>().SetTrigger("attack");//觸發攻擊動畫
 				atkCD = U.attackCD;
 			}
@@ -117,9 +117,9 @@ public class Actor_01 : MonoBehaviour {
 		}
 		//閃躲判定[D]
 		if (Input.GetKeyDown (KeyCode.D))
-		if (U.hurt == false)if (U.stun == false)if (U.dead == false)
+		if (U.hurt == false)if (U.stun == false)if (U.dead == false)if(U.inBattle == true)
 			if (defCD < 0) {
-				MoveDis = 0.5f;MoveTime =10;StartCoroutine(MoveLeft());
+				MoveDis = 0.2f;MoveTime =10;StartCoroutine(MoveLeft());
 				defCD = U.defenseCD;
 			}
 

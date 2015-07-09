@@ -64,6 +64,11 @@ public class Enemy_001 : MonoBehaviour {
 			StartCoroutine (Stun ());
 			U.knocked = false;
 		}
+		//敵人死亡檢查
+		if (U.TargetCol != null)if(U.TargetCol.tag==("Player"))if (U.TargetCol.GetComponent<UnitState> ().dead == true) {
+			U.inBattle = false;U.stopMoving = true;
+			U.TargetCol = null;
+		}
 		
 
 		//前進移動，條件(非戰鬥中，非停止狀態，非死亡狀態，非攻擊中，非受傷中，非防禦中)
@@ -84,7 +89,7 @@ public class Enemy_001 : MonoBehaviour {
 			if(U.inBattle == true)if(U.defense == false)if(U.stun == false)if(U.hurt == false)if(U.dead == false)if(U.attack == false)
 			if(atkCD < 0){
 				U.attack = true;
-			MoveDis = 0.1f;MoveTime =10;StartCoroutine(MoveLeft());
+			MoveDis = 0.05f;MoveTime =10;StartCoroutine(MoveLeft());
 				GetComponent<Animator>().SetTrigger("attack");//觸發攻擊動畫
 				atkCD = U.attackCD;
 			}

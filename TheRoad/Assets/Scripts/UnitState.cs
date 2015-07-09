@@ -10,6 +10,7 @@ public class UnitState : MonoBehaviour {
 	//戰鬥相關
 	public GameObject AttackCol;
 	public GameObject TargetCol;
+	public GameObject Text;
 
 	public float attackCD;
 	public float defenseCD;
