@@ -20,7 +20,7 @@ public class Attacker : MonoBehaviour {
 			if (col.gameObject.tag == ("Player"))
 			if (col.GetComponent<UnitState> ().defense == false) {
 				col.GetComponent<UnitState> ().health -= DMG;
-				col.GetComponent<UnitState>().Text.GetComponent<TextMesh>().text ="-"+DMG;
+				
 			}
 			//失敗
 			if (col.GetComponent<UnitState> ().defense == true) {

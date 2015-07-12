@@ -56,8 +56,12 @@ public class Enemy_001 : MonoBehaviour {
 		}
 		//受傷檢查
 		if (healthAdjust > U.health) {
-			healthAdjust = U.health;
+			//U.Text.GetComponent<TextDamage>().DMGtext =(healthAdjust-U.health);
+			U.Text.GetComponent<TextDamage>().Text.GetComponent<TextMesh>().text = "-"+(healthAdjust-U.health);
+			Instantiate(U.Text,(transform.position+new Vector3(0,3.5f,0)),U.Text.transform.rotation);
+
 			StartCoroutine(Hurt());
+			healthAdjust = U.health;
 		}
 		//暈眩檢查
 		if (U.knocked == true){

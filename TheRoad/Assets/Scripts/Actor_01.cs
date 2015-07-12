@@ -55,8 +55,13 @@ public class Actor_01 : MonoBehaviour {
 		}
 		//受傷檢查
 		if (healthAdjust > U.health) {
-			healthAdjust = U.health;
+			//U.Text.GetComponent<TextDamage>().DMGtext =(healthAdjust-U.health);
+			U.Text.GetComponent<TextDamage>().Text.GetComponent<TextMesh>().text = "-"+(healthAdjust-U.health);
+			Instantiate(U.Text,(transform.position+new Vector3(0,3.5f,0)),U.Text.transform.rotation);
+
 			StartCoroutine(Hurt());
+			healthAdjust = U.health;
+
 		}
 		//暈眩檢查
 		if (U.knocked == true){
@@ -152,7 +157,7 @@ public class Actor_01 : MonoBehaviour {
 	public IEnumerator Attack2 (){
 		//攻擊碰撞擊出				
 		U.AttackCol.GetComponent<BoxCollider>().enabled = true;
-		U.AttackCol.GetComponent<Attacker>().DMG = U.ATKdamage;
+		U.AttackCol.GetComponent<Attacker>().DMG = (U.ATKdamage+10);
 		PlaySound(0);
 		yield return new WaitForSeconds (0.1f);			
 		U.AttackCol.GetComponent<BoxCollider>().enabled = false;	
