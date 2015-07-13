@@ -163,7 +163,7 @@ public class Enemy_001 : MonoBehaviour {
 			yield return new WaitForSeconds (0.3f);
 			MoveDis = 0.1f;MoveTime =10;StartCoroutine(MoveRight());
 			GetComponent<Animator> ().Play ("hurt");
-			yield return new WaitForSeconds (1);
+			yield return new WaitForSeconds (2);
 			U.stun = false;
 		}
 	}

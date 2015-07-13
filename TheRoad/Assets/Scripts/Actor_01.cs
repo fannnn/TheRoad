@@ -79,7 +79,8 @@ public class Actor_01 : MonoBehaviour {
 		if (U.inBattle == true)
 			speed = 0;
 		if (U.inBattle == false)
-			speed += 0.0005f * 2;
+			//speed += 0.0005f * 2;
+			speed = 0.1f;
 		if (speed >= 0.1f)
 			speed = 0.1f;		
 
@@ -97,7 +98,7 @@ public class Actor_01 : MonoBehaviour {
 		defCD -= Time.deltaTime;
 		
 		//攻擊判定[F鍵]
-		if (Input.GetKeyDown(KeyCode.F)) 
+		if (Input.GetKeyDown(KeyCode.J)) 
 			if(U.defense == false)if(U.stun == false)if(U.hurt == false)if(U.dead == false)if(U.attack == false)
 			if(atkCD < 0){
 				U.attack = true;
@@ -105,8 +106,8 @@ public class Actor_01 : MonoBehaviour {
 				GetComponent<Animator>().SetTrigger("attack");//觸發攻擊動畫
 				atkCD = U.attackCD;
 			}
-		//防禦判定[J鍵]
-		if (Input.GetKeyDown (KeyCode.J)) 
+		//防禦判定[F鍵]
+		if (Input.GetKeyDown (KeyCode.F)) 
 			if(U.hurt == false)if(U.stun == false)if (U.dead == false)
 			if (defCD < 0) {
 				StartCoroutine(Defense());
@@ -117,7 +118,6 @@ public class Actor_01 : MonoBehaviour {
 		//if (U.TargetCol.tag == ("Enemy"))
 		if (U.counter == true){
 			GetComponent<Animator> ().Play ("counter");
-			print ("fucke!!");
 			U.counter = false;
 		}
 		//閃躲判定[D]
@@ -166,7 +166,7 @@ public class Actor_01 : MonoBehaviour {
 	public IEnumerator Attack3 (){
 		//攻擊碰撞擊出				
 		U.AttackCol.GetComponent<BoxCollider>().enabled = true;
-		U.AttackCol.GetComponent<Attacker>().DMG = U.ATKdamage;
+		U.AttackCol.GetComponent<Attacker>().DMG = (U.ATKdamage+20);
 		PlaySound(0);
 		yield return new WaitForSeconds (0.1f);			
 		U.AttackCol.GetComponent<BoxCollider>().enabled = false;	

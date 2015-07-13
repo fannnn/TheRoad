@@ -4,11 +4,10 @@ using System.Collections;
 public class GameSystem : MonoBehaviour {
 	public GameObject player;
 	public int playerHealth;
-	int cameraType;
 
 	// Use this for initialization
 	void Start () {
-		cameraType = 2;
+
 	}
 	
 	// Update is called once per frame
@@ -36,7 +35,7 @@ public class GameSystem : MonoBehaviour {
 			GameObject.FindGameObjectWithTag("Player").GetComponent<UnitState>().GetComponent<Animator> ().SetBool ("moving", false);
 		}
 
-		GUI.Box (new Rect (10, 350, 400, 30), "說明: [F]攻擊，[J防禦]，抓時機防禦然後扁回去");
+		GUI.Box (new Rect (10, 350, 400, 30), "說明: [J]攻擊，[F招架]，[D閃躲]");
 
 		}
 }
